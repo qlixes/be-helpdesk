@@ -1,6 +1,7 @@
 package provider
 
 import (
+	"fmt"
 	"log"
 
 	"github.com/qlixes/helpdesk/internal/config"
@@ -12,7 +13,10 @@ type Config struct {
 	Db  *config.Db
 }
 
-type IConfig interface {
+type ConfigMethod interface {
+	GetAppAddress() string
+	GetPgsqlConnection() string
+	GetMysqlConnection() string
 }
 
 var Cfg = newConfig()
@@ -43,4 +47,18 @@ func newConfig() *Config {
 			Name: viper.GetString("DB_NAME"),
 		},
 	}
+}
+
+func (c *Config) GetAppAddress() string {
+	return fmt.Sprintf("%s:%d", c.App.Host, c.App.Port)
+}
+
+func (c *Config) GetPgsqlConnection() string {
+	return fmt.Sprintf("postgres://%s:%s@%s:%d/%s?sslmode=disable&TimeZone=Asia/Jakarta",
+		c.Db.User,
+		c.Db.Pass,
+		c.Db.Host,
+		c.Db.Port,
+		c.Db.Name,
+	)
 }
