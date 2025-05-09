@@ -15,8 +15,10 @@ type Config struct {
 
 type ConfigMethod interface {
 	GetAppAddress() string
+	GetAppName() string
 	GetPgsqlConnection() string
 	GetMysqlConnection() string
+	GetAppTimezone() string
 }
 
 var Cfg = newConfig()
@@ -35,9 +37,10 @@ func newConfig() *Config {
 
 	return &Config{
 		App: &config.App{
-			Host: viper.GetString("APP_HOST"),
-			Port: viper.GetInt("APP_PORT"),
-			Name: viper.GetString("APP_NAME"),
+			Host:     viper.GetString("APP_HOST"),
+			Port:     viper.GetInt("APP_PORT"),
+			Name:     viper.GetString("APP_NAME"),
+			TimeZone: viper.GetString("APP_TIMEZONE"),
 		},
 		Db: &config.Db{
 			Host: viper.GetString("DB_HOST"),
@@ -61,4 +64,22 @@ func (c *Config) GetPgsqlConnection() string {
 		c.Db.Port,
 		c.Db.Name,
 	)
+}
+
+func (c *Config) GetMysqlConnection() string {
+	return fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=utf8mb4&parseTime=True&loc=Local",
+		c.Db.User,
+		c.Db.Pass,
+		c.Db.Host,
+		c.Db.Port,
+		c.Db.Name,
+	)
+}
+
+func (c *Config) GetAppName() string {
+	return c.App.Name
+}
+
+func (c *Config) GetAppTimezone() string {
+	return c.App.TimeZone
 }
