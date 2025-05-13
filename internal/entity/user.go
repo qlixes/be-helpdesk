@@ -8,18 +8,11 @@ import (
 
 type User struct {
 	gorm.Model
-	Email     string `json:"email"     gorm:""`
-	Name      string `json:"name"      gorm:""`
+	Email     string `json:"email"`
+	Name      string `json:"name"`
 	Password  string
-	RoleID    Role `json:"role"      gorm:""`
-	IsActive  bool `json:"is_active" gorm:""`
+	RoleID    uint `json:"role_id"`
+	Role Role
+	IsActive  bool `json:"is_active"`
 	CreatedAt time.Time
-}
-
-type UserRepository interface {
-	Show() []User
-	Filter(id int) User
-	Search(key string) []User
-	Update(id int, user User) (User, error)
-	Delete(id int) error
 }

@@ -13,7 +13,7 @@ type Database struct {
 }
 
 type DatabaseMethod interface {
-	//`:w http.ResponseWriter, r *http.Request`
+
 }
 
 var Pg = newPgsql()
