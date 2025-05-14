@@ -1,6 +1,7 @@
 package main
 
 import (
+	"database/sql/driver"
 	"log"
 
 	"github.com/gofiber/fiber/v3"
@@ -11,12 +12,14 @@ import (
 	"github.com/qlixes/helpdesk/internal/router"
 )
 
+var App = provider.NewBootstrap()
+
 func main() {
 
 	app := fiber.New(fiber.Config{
 		CaseSensitive:     true,
 		StrictRouting:     true,
-		AppName:           provider.Cfg.GetAppName(),
+		AppName:           App.Config.GetAppName(),
 		Immutable:         true,
 		ReduceMemoryUsage: true,
 	})
@@ -28,7 +31,7 @@ func main() {
 	router.WebRouter(app)
 	router.ApiRouter(app)
 
-	err := app.Listen(provider.Cfg.GetAppAddress(), fiber.ListenConfig{
+	err := app.Listen(App.Config.GetAppAddress(), fiber.ListenConfig{
 		EnablePrefork:         true,
 		DisableStartupMessage: false,
 	})

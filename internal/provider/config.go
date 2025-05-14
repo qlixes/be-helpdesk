@@ -1,6 +1,7 @@
 package provider
 
 import (
+	"database/sql"
 	"fmt"
 	"log"
 
@@ -16,14 +17,10 @@ type Config struct {
 type ConfigMethod interface {
 	GetAppAddress() string
 	GetAppName() string
-	GetPgsqlConnection() string
-	GetMysqlConnection() string
 	GetAppTimezone() string
 }
 
-var Cfg = newConfig()
-
-func newConfig() *Config {
+func NewConfig() *Config {
 
 	viper.AddConfigPath(".")
 	viper.SetConfigFile(".env")
@@ -43,6 +40,7 @@ func newConfig() *Config {
 			TimeZone: viper.GetString("APP_TIMEZONE"),
 		},
 		Db: &config.Db{
+			Driver: viper.GetString("DB_DRIVER"),
 			Host: viper.GetString("DB_HOST"),
 			Port: viper.GetInt("DB_PORT"),
 			User: viper.GetString("DB_USER"),
@@ -54,26 +52,6 @@ func newConfig() *Config {
 
 func (c *Config) GetAppAddress() string {
 	return fmt.Sprintf("%s:%d", c.App.Host, c.App.Port)
-}
-
-func (c *Config) GetPgsqlConnection() string {
-	return fmt.Sprintf("postgres://%s:%s@%s:%d/%s?sslmode=disable&TimeZone=Asia/Jakarta",
-		c.Db.User,
-		c.Db.Pass,
-		c.Db.Host,
-		c.Db.Port,
-		c.Db.Name,
-	)
-}
-
-func (c *Config) GetMysqlConnection() string {
-	return fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=utf8mb4&parseTime=True&loc=Local",
-		c.Db.User,
-		c.Db.Pass,
-		c.Db.Host,
-		c.Db.Port,
-		c.Db.Name,
-	)
 }
 
 func (c *Config) GetAppName() string {

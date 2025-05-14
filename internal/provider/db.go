@@ -1,12 +1,13 @@
 package provider
 
 import (
-	"database/sql"
+	"gorm.io/driver/postgres"
 	"log"
 
-	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
+
+var connector gorm.Dialector
 
 type Database struct {
 	Db *gorm.DB
@@ -16,25 +17,19 @@ type DatabaseMethod interface {
 
 }
 
-var Pg = newPgsql()
+func NewDatabase() *Database {
 
-func newPgsql() *Database {
-
-	pgx, err := sql.Open("pgx", Cfg.GetPgsqlConnection())
+	db, err := gorm.Open(connector, &gorm.Config{})
 
 	if err != nil {
-		log.Fatalf("Unable connect database : %s \n", err.Error())
-	}
-
-	db, err := gorm.Open(postgres.New(postgres.Config{
-		Conn: pgx,
-	}))
-
-	if err != nil {
-		log.Fatalf("Unable connect existing database : %s \n", err.Error())
+		log.Fatal("Unable handle connection : %s \n", err.Error())
 	}
 
 	return &Database{
 		Db: db,
 	}
+}
+
+func NewMysql() *Database {
+	
 }
