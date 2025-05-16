@@ -1,7 +1,6 @@
 package main
 
 import (
-	"database/sql/driver"
 	"log"
 
 	"github.com/gofiber/fiber/v3"
@@ -13,6 +12,10 @@ import (
 )
 
 var App = provider.NewBootstrap()
+
+func init() {
+	App.UsePgsql()
+}
 
 func main() {
 

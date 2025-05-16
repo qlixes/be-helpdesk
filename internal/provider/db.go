@@ -1,28 +1,24 @@
 package provider
 
 import (
-	"gorm.io/driver/postgres"
 	"log"
 
 	"gorm.io/gorm"
 )
-
-var connector gorm.Dialector
 
 type Database struct {
 	Db *gorm.DB
 }
 
 type DatabaseMethod interface {
-
 }
 
-func NewDatabase() *Database {
+func NewDatabase(connector gorm.Dialector) *Database {
 
 	db, err := gorm.Open(connector, &gorm.Config{})
 
 	if err != nil {
-		log.Fatal("Unable handle connection : %s \n", err.Error())
+		log.Fatalf("Unable handle connection : %s \n", err.Error())
 	}
 
 	return &Database{
@@ -30,6 +26,3 @@ func NewDatabase() *Database {
 	}
 }
 
-func NewMysql() *Database {
-	
-}

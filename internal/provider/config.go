@@ -1,7 +1,6 @@
 package provider
 
 import (
-	"database/sql"
 	"fmt"
 	"log"
 
@@ -61,3 +60,4 @@ func (c *Config) GetAppName() string {
 func (c *Config) GetAppTimezone() string {
 	return c.App.TimeZone
 }
+
