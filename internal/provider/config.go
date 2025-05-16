@@ -10,7 +10,7 @@ import (
 
 type Config struct {
 	App *config.App
-	Db  *config.Db
+	Db *config.DB
 }
 
 type ConfigMethod interface {
@@ -38,8 +38,7 @@ func NewConfig() *Config {
 			Name:     viper.GetString("APP_NAME"),
 			TimeZone: viper.GetString("APP_TIMEZONE"),
 		},
-		Db: &config.Db{
-			Driver: viper.GetString("DB_DRIVER"),
+		Db: &config.DB{
 			Host: viper.GetString("DB_HOST"),
 			Port: viper.GetInt("DB_PORT"),
 			User: viper.GetString("DB_USER"),

@@ -13,10 +13,6 @@ import (
 
 var App = provider.NewBootstrap()
 
-func init() {
-	App.UsePgsql()
-}
-
 func main() {
 
 	app := fiber.New(fiber.Config{
@@ -31,8 +27,7 @@ func main() {
 	app.Use(cors.New())
 	app.Use(csrf.New())
 
-	router.WebRouter(app)
-	router.ApiRouter(app)
+	router.HelpdeskRouter(app)
 
 	err := app.Listen(App.Config.GetAppAddress(), fiber.ListenConfig{
 		EnablePrefork:         true,

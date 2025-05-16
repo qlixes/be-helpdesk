@@ -1,7 +1,6 @@
 package config
 
-type Db struct {
-	Driver string
+type DB struct {
 	Host string
 	Port int
 	User string

@@ -5,14 +5,14 @@ go 1.23.4
 require (
 	github.com/gofiber/fiber/v3 v3.0.0-beta.4
 	github.com/spf13/viper v1.20.1
-	gorm.io/driver/postgres v1.5.11
-	gorm.io/gorm v1.26.0
 )
 
 require (
+	filippo.io/edwards25519 v1.1.0 // indirect
 	github.com/andybalholm/brotli v1.1.1 // indirect
 	github.com/fsnotify/fsnotify v1.9.0 // indirect
 	github.com/fxamacker/cbor/v2 v2.8.0 // indirect
+	github.com/go-sql-driver/mysql v1.9.2 // indirect
 	github.com/go-viper/mapstructure/v2 v2.2.1 // indirect
 	github.com/gofiber/schema v1.3.0 // indirect
 	github.com/gofiber/utils/v2 v2.0.0-beta.8 // indirect
@@ -24,6 +24,7 @@ require (
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/jinzhu/now v1.1.5 // indirect
 	github.com/klauspost/compress v1.18.0 // indirect
+	github.com/lib/pq v1.10.9 // indirect
 	github.com/mattn/go-colorable v0.1.14 // indirect
 	github.com/mattn/go-isatty v0.0.20 // indirect
 	github.com/pelletier/go-toml/v2 v2.2.4 // indirect
