@@ -1,5 +1,0 @@
-package helpdesk
-
-func main() {
-
-}
