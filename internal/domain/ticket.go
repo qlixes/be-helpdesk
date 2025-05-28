@@ -1,5 +1,7 @@
 package domain
 
+import "gorm.io/gorm"
+
 type TicketGroup int
 
 const (
@@ -16,6 +18,7 @@ const (
 )
 
 type Ticket struct {
+	gorm.Model
 	ID        uint
 	CompanyID uint
 	Companies Company
