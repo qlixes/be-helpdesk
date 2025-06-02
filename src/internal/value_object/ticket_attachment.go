@@ -1,8 +1,10 @@
-package domain
+package valueobject
 
-import "gorm.io/gorm"
+import (
+	"gorm.io/gorm"
+)
 
-type Attachemt struct {
+type TicketAttachment struct {
 	gorm.Model
 	ID       uint
 	ReplyID  uint

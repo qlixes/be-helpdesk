@@ -3,7 +3,7 @@ package main
 import (
 	"net/http"
 
-	"github.com/qlixes/helpdesk/internal/infrastructure/server"
+	"github.com/qlixes/be-helpdesk/internal/infrastructure/server"
 )
 
 func main() {

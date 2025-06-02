@@ -3,7 +3,7 @@ package server
 import (
 	"net/http"
 
-	"github.com/qlixes/helpdesk/web/handlers"
+	"github.com/qlixes/be-helpdesk/web/handler"
 )
 
 type Handler struct {
@@ -18,5 +18,5 @@ func New(s *http.ServeMux) *Handler {
 }
 
 func (h *Handler) routes() {
-	h.mux.HandleFunc("/", handlers.HelloWorld)
+	h.mux.HandleFunc("/", handler.HelloWorld)
 }

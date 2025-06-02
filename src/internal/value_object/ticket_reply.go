@@ -1,6 +1,9 @@
-package domain
+package valueobject
 
-import "gorm.io/gorm"
+import (
+	"github.com/qlixes/helpdesk/internal/domain"
+	"gorm.io/gorm"
+)
 
 type Reply struct {
 	gorm.Model
@@ -8,6 +11,6 @@ type Reply struct {
 	TicketID uint
 	Tickets  Ticket
 	UserID   uint
-	Users    User
+	Users    domain.User
 	Body     string
 }

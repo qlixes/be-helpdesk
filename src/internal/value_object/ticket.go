@@ -1,6 +1,9 @@
-package domain
+package valueobject
 
-import "gorm.io/gorm"
+import (
+	"github.com/qlixes/helpdesk/internal/domain"
+	"gorm.io/gorm"
+)
 
 type TicketGroup int
 
@@ -21,9 +24,9 @@ type Ticket struct {
 	gorm.Model
 	ID        uint
 	CompanyID uint
-	Companies Company
+	Companies domain.Company
 	UserID    uint
-	Users     User
+	Users     domain.User
 	Group     TicketGroup
 	Title     string
 	Status    TicketStatus
