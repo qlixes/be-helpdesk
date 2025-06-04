@@ -1,31 +1,33 @@
 ```bash
-|-- Dockerfile
-|-- Makefile
-|-- README.md
-|-- cmd
-|   `-- helpdesk
-|       `-- main.go
-|-- database
-|   |-- factories
-|   |-- migrations
-|   `-- seeders
-|-- go.mod
-|-- internal
-|   |-- application
-|   |-- command
-|   |-- database
-|   |-- domain
-|   |-- helpdesk
-|   |-- infrastructure
-|   |-- ports
-|   `-- server
-|-- pkg
-|   `-- shared
-|       |-- database
-|       |-- helpers
-|       |-- logging
-|       `-- utils
-|-- tests
-`-- web
-    `-- handlers
+├── Dockerfile
+├── README.md
+├── assets
+│   └── customer_support.png
+└── src
+    ├── Makefile
+    ├── cmd
+    │   └── main.go
+    ├── go.mod
+    ├── go.sum
+    ├── internal
+    │   ├── domain
+    │   │   ├── acl.go
+    │   │   ├── company.go
+    │   │   ├── company_user.go
+    │   │   ├── role.go
+    │   │   ├── service.go
+    │   │   └── user.go
+    │   ├── infrastructure
+    │   │   └── server
+    │   │       └── route.go
+    │   └── value_object
+    │       ├── faq.go
+    │       ├── faq_attachment.go
+    │       ├── ticket.go
+    │       ├── ticket_attachment.go
+    │       └── ticket_reply.go
+    └── web
+        └── handler
+            ├── hello_world.go
+            └── user_handler.go
 ```
