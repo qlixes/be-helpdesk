@@ -1,15 +1,18 @@
 package main
 
 import (
+	"log"
 	"net/http"
 
-	"github.com/qlixes/be-helpdesk/internal/infrastructure/server"
+	"github.com/qlixes/be-helpdesk/internal/interfaces/bootstrap"
 )
 
 func main() {
-	mux := http.NewServeMux()
+	app := bootstrap.NewApplication()
 
-	server.New(mux)
+	err := http.ListenAndServe(":8000")
 
-	http.ListenAndServe(":8000", mux)
+	if err != nil {
+		log.Fatalln(err.Error())
+	}
 }
