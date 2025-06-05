@@ -1,7 +1,7 @@
 package valueobject
 
 import (
-	"github.com/qlixes/be-helpdesk/internal/domain"
+	"github.com/qlixes/be-helpdesk/internal/entity"
 	"gorm.io/gorm"
 )
 
@@ -24,9 +24,9 @@ type Ticket struct {
 	gorm.Model
 	ID        uint
 	CompanyID uint
-	Companies domain.Company
+	Companies entity.Company
 	UserID    uint
-	Users     domain.User
+	Users     entity.User
 	Group     TicketGroup
 	Title     string
 	Status    TicketStatus

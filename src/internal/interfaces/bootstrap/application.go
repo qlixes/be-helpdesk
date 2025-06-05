@@ -7,7 +7,7 @@ import (
 )
 
 type Application struct {
-	mux *http.ServeMux
+	Mux *http.ServeMux
 }
 
 func NewApplication() *Application {
@@ -18,6 +18,6 @@ func NewApplication() *Application {
 	mux.HandleFunc("/", handlers.GetHelloWorld)
 
 	return &Application{
-		mux: mux,
+		Mux: mux,
 	}
 }

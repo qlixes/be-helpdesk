@@ -1,7 +1,7 @@
 package valueobject
 
 import (
-	"github.com/qlixes/be-helpdesk/internal/domain"
+	"github.com/qlixes/be-helpdesk/internal/domain/entity"
 	"gorm.io/gorm"
 )
 
@@ -11,6 +11,6 @@ type Reply struct {
 	TicketID uint
 	Tickets  Ticket
 	UserID   uint
-	Users    domain.User
+	Users    entity.User
 	Body     string
 }
