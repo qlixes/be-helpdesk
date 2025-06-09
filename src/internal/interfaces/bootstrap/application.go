@@ -2,22 +2,38 @@ package bootstrap
 
 import (
 	"net/http"
+	"sync"
 
 	"github.com/qlixes/be-helpdesk/web/handlers"
 )
 
+var (
+	once sync.Once
+	mux  *http.ServeMux
+)
+
+type ApplicationManager interface {
+	GetInstance() *Application
+}
+
 type Application struct {
-	Mux *http.ServeMux
+	mux *http.ServeMux
 }
 
 func NewApplication() *Application {
 
-	mux := http.NewServeMux()
+	once.Do(func() {
+		mux = http.NewServeMux()
+	})
 
 	// routing
 	mux.HandleFunc("/", handlers.GetHelloWorld)
 
 	return &Application{
-		Mux: mux,
+		mux: mux,
 	}
+}
+
+func (m *Application) GetInstance() *http.ServeMux {
+	return m.mux
 }

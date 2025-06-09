@@ -1,7 +1,7 @@
 package valueobject
 
 import (
-	"github.com/qlixes/be-helpdesk/internal/entity"
+	"github.com/qlixes/be-helpdesk/internal/domain/entity"
 	"gorm.io/gorm"
 )
 

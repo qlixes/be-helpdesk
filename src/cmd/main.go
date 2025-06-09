@@ -1,32 +1,26 @@
 package main
 
 import (
+	"log"
 	"net/http"
 
+	"github.com/joho/godotenv"
 	"github.com/qlixes/be-helpdesk/internal/interfaces/bootstrap"
-	"github.com/spf13/viper"
 )
-
-func init() {
-
-}
 
 func main() {
 
-	viper.AddConfigPath(".")
-	viper.SetConfigFile(".env")
-
-	conf := viper.ReadInConfig()
+	conf := godotenv.Load()
 
 	if conf != nil {
-
+		log.Fatal(conf.Error())
 	}
 
 	app := bootstrap.NewApplication()
 
-	err := http.ListenAndServe(":8000", app.Mux)
+	err := http.ListenAndServe(":8000", app.GetInstance())
 
 	if err != nil {
-
+		log.Fatal(err.Error())
 	}
 }
