@@ -1,44 +1,51 @@
 package bootstrap
 
-import "os"
+import (
+	"os"
+
+	"github.com/qlixes/be-helpdesk/internal/config"
+)
 
 type Config struct {
-	AppPort string
-	AppHost string
-	AppName string
+	app   *config.App
+	db    *config.Db
+	cache *config.Cache
+	queue *config.Queue
+	mail  *Config.Mail
+}
 
-	DbHost string
-	DbPort string
-	DbUser string
-	DbPass string
-	DbName string
-
-	MailHost string
-	MailPort string
-	MailUser string
-	MailPass string
-	MailName string
-	MailFrom string
+type ConfigManager interface {
+	GetAppPort() string
 }
 
 func NewConfig() *Config {
 
 	return &Config{
-		AppPort: os.Getenv("APP_PORT"),
-		AppHost: os.Getenv("APP_HOST"),
-		AppName: os.Getenv("APP_NAME"),
+		app: &config.App{
+			Port: os.Getenv("APP_PORT"),
+			Host: os.Getenv("APP_HOST"),
+			Name: os.Getenv("APP_NAME"),
+		},
 
-		DbHost: os.Getenv("DB_HOST"),
-		DbPort: os.Getenv("DB_PORT"),
-		DbUser: os.Getenv("DB_USER"),
-		DbPass: os.Getenv("DB_PASS"),
-		DbName: os.Getenv("DB_NAME"),
+		db: &config.Db{
+			Host:     os.Getenv("DB_HOST"),
+			Port:     os.Getenv("DB_PORT"),
+			User:     os.Getenv("DB_USER"),
+			Password: os.Getenv("DB_PASS"),
+			Name:     os.Getenv("DB_NAME"),
+		},
 
-		MailHost: os.Getenv("MAIL_HOST"),
-		MailPort: os.Getenv("MAIL_PORT"),
-		MailUser: os.Getenv("MAIL_USER"),
-		MailPass: os.Getenv("MAIL_PASS"),
-		MailFrom: os.Getenv("MAIL_FROM"),
-		MailName: os.Getenv("MAIL_NAME"),
+		mail: &config.Mail{
+			Host:     os.Getenv("MAIL_HOST"),
+			Port:     os.Getenv("MAIL_PORT"),
+			User:     os.Getenv("MAIL_USER"),
+			Password: os.Getenv("MAIL_PASS"),
+			From:     os.Getenv("MAIL_FROM"),
+			Name:     os.Getenv("MAIL_NAME"),
+		},
 	}
+}
+
+func (c *Config) GetAppPort() string {
+	return c.app.Port
 }

@@ -2,7 +2,6 @@ package main
 
 import (
 	"log"
-	"net/http"
 
 	"github.com/joho/godotenv"
 	"github.com/qlixes/be-helpdesk/internal/interfaces/bootstrap"
@@ -18,9 +17,9 @@ func main() {
 
 	app := bootstrap.NewApplication()
 
-	err := http.ListenAndServe(":8000", app.GetInstance())
+	err := app.Run()
 
 	if err != nil {
-		log.Fatal(err.Error())
+
 	}
 }

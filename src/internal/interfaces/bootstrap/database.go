@@ -5,17 +5,15 @@ import (
 )
 
 type Database struct {
-	DB *gorm.DB
+	Db *gorm.DB
 }
 
 type DatabaseManager interface {
 }
 
-func NewDatabase() *Database {
-
-	db, err := gorm.Open()
+func NewDatabase(db *gorm.DB) *Database {
 
 	return &Database{
-		DB: db,
+		Db: db,
 	}
 }
