@@ -12,7 +12,7 @@ func main() {
 	conf := godotenv.Load()
 
 	if conf != nil {
-		log.Fatal(conf.Error())
+		log.Fatalln(conf.Error())
 	}
 
 	app := bootstrap.NewApplication()
@@ -20,6 +20,6 @@ func main() {
 	err := app.Run()
 
 	if err != nil {
-
+		log.Fatalln(err.Error())
 	}
 }

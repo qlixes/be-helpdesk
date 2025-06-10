@@ -1,8 +1,9 @@
 package config
 
 type Cache struct {
-	host     string
-	port     string
-	user     string
-	password string
+	Host     string
+	Port     string
+	User     string
+	Password string
+	Index    string
 }

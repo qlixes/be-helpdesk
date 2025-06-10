@@ -1,6 +1,8 @@
 package bootstrap
 
-import "sync"
+import (
+	"sync"
+)
 
 var (
 	once sync.Once

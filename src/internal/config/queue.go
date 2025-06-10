@@ -1,9 +1,9 @@
 package config
 
 type Queue struct {
-	host     string
-	port     string
-	user     string
-	password string
-	vhost    string
+	Host     string
+	Port     string
+	User     string
+	Password string
+	Vhost    string
 }

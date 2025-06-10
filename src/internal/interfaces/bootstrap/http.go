@@ -2,6 +2,8 @@ package bootstrap
 
 import (
 	"net/http"
+
+	"github.com/qlixes/be-helpdesk/web/handlers"
 )
 
 type Http struct {
@@ -10,6 +12,7 @@ type Http struct {
 
 type HttpManager interface {
 	ListenAndServe() error
+	Routes()
 }
 
 func NewHttp() *Http {
@@ -24,4 +27,8 @@ func NewHttp() *Http {
 func (h *Http) ListenAndServe(port string) error {
 
 	return http.ListenAndServe(port, h.mux)
+}
+
+func (h *Http) Routes() {
+	http.HandleFunc("POST /", handlers.GetHelloWorld)
 }
