@@ -39,5 +39,6 @@ func NewApplication() *Application {
 }
 
 func (a *Application) Run() error {
+
 	return a.http.ListenAndServe(a.config.GetAppPort())
 }

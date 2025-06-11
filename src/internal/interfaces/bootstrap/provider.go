@@ -1,9 +1,9 @@
 package bootstrap
 
-import "github.com/qlixes/be-helpdesk/pkg/shared"
-
 type Provider struct {
-	Config *shared.Config
+}
+
+type ProviderManager interface {
 }
 
 func NewProvider() *Provider {
