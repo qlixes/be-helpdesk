@@ -5,17 +5,15 @@ import (
 )
 
 var (
-	once sync.Once
 	app  Application
+	once sync.Once
 )
 
 type Application struct {
-	http *Http
-	// db     *Database
-	// cache  *Cache
-	// mail   *Mail
-	config *Config
-	// queue  *Queue
+	http     *Http
+	config   *Config
+	provider *Provider
+	facade   *Facade
 }
 
 type ApplicationManager interface {
@@ -26,12 +24,10 @@ func NewApplication() *Application {
 
 	once.Do(func() {
 		app = Application{
-			http: NewHttp(),
-			// db:     NewDatabase(),
-			// cache:  NewCache(),
-			// mail:   NewMail(),
-			config: NewConfig(),
-			// queue:  NewQueue(),
+			http:     NewHttp(),
+			config:   NewConfig(),
+			provider: NewProvider(),
+			facade:   NewFacade(),
 		}
 	})
 

@@ -1,4 +1,4 @@
-package bootstrap
+package facades
 
 type Mail struct {
 }

@@ -8,4 +8,5 @@ import (
 
 func Routes(h *http.ServeMux) {
 	h.HandleFunc("POST /", handlers.GetHelloWorld)
+	h.HandleFunc("POST /index", handlers.GetHelloWorld)
 }

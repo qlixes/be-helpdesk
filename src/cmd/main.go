@@ -5,6 +5,8 @@ import (
 
 	"github.com/joho/godotenv"
 	"github.com/qlixes/be-helpdesk/internal/interfaces/bootstrap"
+
+	_ "net/http/pprof"
 )
 
 func main() {
