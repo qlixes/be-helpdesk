@@ -78,6 +78,10 @@ func NewConfig() *Config {
 	}
 }
 
+func (c *Config) GetAppHost() string {
+	return c.app.Host
+}
+
 func (c *Config) GetAppPort() string {
 	return c.app.Port
 }

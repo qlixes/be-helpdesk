@@ -15,8 +15,4 @@ type User struct {
 }
 
 type UserRepository interface {
-	Create() error
-	Select() error
-	Update() error
-	Delete() error
 }
